@@ -51,10 +51,13 @@ public static void añadirVenta(String producto,int cantidad,double precio) thro
 	String consulta="insert into ventas values('"+producto+"','"+cantidad+"','"+precio+"')";
 	Statement statement=conexion.createStatement();
 	statement.executeUpdate(consulta);
+	Interface.error.setVisible(false);
 	
 	} catch (Exception e) {
+		Interface.error.setText("Ha sucedido un error intentalo de nuevo");
+		Interface.error.setVisible(true);
 		JOptionPane.showMessageDialog(null,"Venta ya añadidad");
-		Interface.modeloVentas.removeRow(Interface.modelo.getRowCount()-1);
+		Interface.modeloVentas.removeRow(Interface.modeloVentas.getRowCount()-1);
 		
 	}
 }
@@ -103,7 +106,7 @@ public static void cargarTablaInven() throws SQLException {
 		Interface.modelo.addRow(new Object[] {cantidad,producto,precio});
 	}
 	} catch (Exception e) {
-		System.out.println("Error");
+		System.out.println("Error carga tabla inventarios");
 		
 	}
 }
@@ -124,13 +127,13 @@ public static void cargarTablaVentas() throws SQLException {
 	
 	ResultSet resultText=statement.executeQuery(consulta);
 	while(resultText.next()) {
-		int cantidad=resultText.getInt("cantidad");
 		String producto=resultText.getString("producto");
 		double precio=resultText.getDouble("precio");
 		Interface.modeloVentas.addRow(new Object[] {producto,precio});
+		System.out.println(producto+"  "+precio);
 	}
 	} catch (Exception e) {
-		System.out.println("Error");
+		System.out.println("Error carga tabla ventas");
 		
 	}
 }
@@ -148,6 +151,26 @@ public static void actualizarProducto(int cantidad,String producto,double precio
        
        //mete los valores en base de datos
        String consulta="update productos set cantidad='"+cantidad+"',precio='"+precio+"' where producto='"+producto+"'";
+		Statement statement=conexion.createStatement();
+		statement.executeUpdate(consulta);
+	} catch (Exception e) {
+		
+		System.out.println("error");
+	}
+}
+public static void actualizarUsuario(String usuario,String password) throws SQLException {
+	try {
+		 // Cargar el controlador JDBC
+       Class.forName("com.mysql.cj.jdbc.Driver");
+
+       // Establecer la conexión a la base de datos
+       String url = "jdbc:mysql://localhost:3306/prueba";
+       String user = "root";
+       String contraseña = "";
+       Connection conexion = DriverManager.getConnection(url, user, contraseña);
+       
+       //mete los valores en base de datos
+       String consulta="update usuario set contraseña='"+password+"' where id_usuario='"+usuario+"'";
 		Statement statement=conexion.createStatement();
 		statement.executeUpdate(consulta);
 	} catch (Exception e) {
@@ -230,6 +253,7 @@ public static boolean loginUsuario(String usuario,String password) {
 	return false;
 }
 public static void main(String[] args) {
+	
 	
 }
 }

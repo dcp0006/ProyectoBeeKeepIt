@@ -26,7 +26,7 @@ import java.awt.event.KeyEvent;
 public class Inicio {
 	JFrame frame;
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	private static JTextField usuario;
+	static JTextField usuario= new JTextField();
 	private static JPasswordField contraseña;
 	static int n = 0;
 	static String usuarioFinal="default";
@@ -72,7 +72,7 @@ public class Inicio {
 		Intro.setBackground(new Color(255, 250, 205));
 		tabbedPane.addTab("New tab", null, Intro, null);
 		Intro.setLayout(null);
-		usuario = new JTextField();
+	
 		usuario.setBounds(182, 274, 258, 39);
 		Intro.add(usuario);
 		usuario.setColumns(10);
