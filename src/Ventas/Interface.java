@@ -47,7 +47,6 @@ public class Interface {
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel Ventas = new JPanel();
 	private final JPanel Clientes = new JPanel();
-	private final JPanel Proveedores = new JPanel();
 	private final JPanel Configuracion = new JPanel();
 	static DefaultTableModel modelo = new DefaultTableModel();;
 	static DefaultTableModel modeloVentas = new DefaultTableModel();;
@@ -62,6 +61,8 @@ public class Interface {
 	private JTextField textField_5;
 	private static Clip clip;
     private static boolean playing;
+    static JLabel error = new JLabel("Mensaje de error");
+   
 
 	/**
 	 * Launch the application.
@@ -94,6 +95,7 @@ public class Interface {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	/*
 	  public synchronized void playAudio(String audioFilePath) throws Exception {
 	        try {
 				if (playing) {
@@ -132,7 +134,7 @@ public class Interface {
 	        });
 	        playThread.start();
 	    }
-	
+	*/
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 250, 205));
@@ -156,12 +158,22 @@ public class Interface {
 		modelo.addColumn("Cantidad");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Precio");
+		table_1.setFillsViewportHeight(true);
+		table_1.setCellSelectionEnabled(true);
+		table_1.setBorder(new MatteBorder(0, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		table_1.setBounds(56, 85, 419, 575);
+		Ventas.add(table_1);
+		modeloVentas.addColumn("producto");
+		modeloVentas.addColumn("Precio");
+		
+	/*
 		try {
 			playAudio(null);
 		} catch (Exception e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
+		*/
 		try {
 			Conexion.cargarTablaInven();
 			Conexion.cargarTablaVentas();
@@ -344,13 +356,7 @@ public class Interface {
 		Ventas.setLayout(null);
 		
 	
-		table_1.setFillsViewportHeight(true);
-		table_1.setCellSelectionEnabled(true);
-		table_1.setBorder(new MatteBorder(0, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		table_1.setBounds(56, 85, 419, 575);
-		Ventas.add(table_1);
-		modeloVentas.addColumn("producto");
-		modeloVentas.addColumn("Precio");
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("Vende:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -362,10 +368,11 @@ public class Interface {
 		Ventas.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Mensaje de error");
-		lblNewLabel_3.setForeground(new Color(255, 0, 0));
-		lblNewLabel_3.setBounds(597, 116, 150, 50);
-		Ventas.add(lblNewLabel_3);
+		
+		error.setForeground(new Color(255, 0, 0));
+		error.setBounds(597, 116, 262, 50);
+		Ventas.add(error);
+		 error.setVisible(false);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Cant:");
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -373,7 +380,7 @@ public class Interface {
 		Ventas.add(lblNewLabel_2_1);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(661, 162, 86, 38);
+		textField_4.setBounds(685, 162, 86, 38);
 		Ventas.add(textField_4);
 		textField_4.setColumns(10);
 		
@@ -430,14 +437,14 @@ public class Interface {
 		lblNewLabel_8_1.setBounds(10, 15, 175, 31);
 		panel_2_1.add(lblNewLabel_8_1);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Precio:");
+		JLabel lblNewLabel_2_1_1 = new JLabel("Precio/u:");
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1_1.setBounds(597, 211, 63, 50);
+		lblNewLabel_2_1_1.setBounds(597, 211, 80, 50);
 		Ventas.add(lblNewLabel_2_1_1);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(661, 213, 86, 38);
+		textField_5.setBounds(685, 211, 86, 38);
 		Ventas.add(textField_5);
 		Clientes.setBackground(new Color(255, 248, 220));
 		
@@ -487,10 +494,6 @@ public class Interface {
 		lblNewLabel_9_2.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblNewLabel_9_2.setBounds(10, 11, 186, 38);
 		panel_3_1_1.add(lblNewLabel_9_2);
-		Proveedores.setBackground(new Color(255, 248, 220));
-		
-		tabbedPane.addTab("Proveedores", null, Proveedores, null);
-		Proveedores.setLayout(null);
 		Configuracion.setBackground(new Color(255, 248, 220));
 		
 		tabbedPane.addTab("Configuracion", null, Configuracion, null);
@@ -507,24 +510,50 @@ public class Interface {
 		lblNewLabel_5.setBounds(100, 272, 342, 85);
 		Configuracion.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Usuario:    "+Inicio.usuarioFinal);
+		JLabel lblNewLabel_6 = new JLabel("Usuario:    "+Inicio.usuario.getText());
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_6.setBounds(100, 432, 342, 75);
 		Configuracion.add(lblNewLabel_6);
 		
 		JButton btnNewButton_3 = new JButton("Cambiar contraseña");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subscripciones a = new subscripciones();
+				a.tabbedPane.setSelectedIndex(1);
+				a.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_3.setBackground(new Color(222, 184, 135));
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_3.setBounds(427, 437, 459, 64);
 		Configuracion.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Prolongar subscripción");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subscripciones a = new subscripciones();
+				a.frame.setVisible(true);
+				
+				a.tabbedPane.setSelectedIndex(0);
+			}
+		});
 		btnNewButton_4.setBackground(new Color(222, 184, 135));
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_4.setBounds(427, 277, 459, 75);
 		Configuracion.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Aumentar capacidad");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subscripciones a = new subscripciones();
+				a.frame.setVisible(true);
+				
+				
+				a.tabbedPane.setSelectedIndex(0);
+				
+			}
+		});
 		btnNewButton_5.setBackground(new Color(222, 184, 135));
 		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_5.setBounds(427, 121, 466, 75);
