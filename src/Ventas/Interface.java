@@ -49,7 +49,8 @@ public class Interface {
 	private final JPanel Clientes = new JPanel();
 	private final JPanel Configuracion = new JPanel();
 	static DefaultTableModel modelo = new DefaultTableModel();;
-	static DefaultTableModel modeloVentas = new DefaultTableModel();;
+	static DefaultTableModel modeloVentas = new DefaultTableModel();
+	static DefaultTableModel modeloClientes = new DefaultTableModel();;
 	private JTable table=new JTable(modelo);
 	private JTable table_1 = new JTable(modeloVentas);
 	private JTextField textField;
@@ -57,7 +58,7 @@ public class Interface {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private JTable table_2;
+	private JTable table_2=new JTable(modeloClientes);
 	private JTextField textField_5;
 	private static Clip clip;
     private static boolean playing;
@@ -166,6 +167,8 @@ public class Interface {
 		modeloVentas.addColumn("producto");
 		modeloVentas.addColumn("Precio");
 		
+		;
+		
 	/*
 		try {
 			playAudio(null);
@@ -243,6 +246,8 @@ public class Interface {
 				try {
 					
 					Conexion.actualizarProducto(Integer.valueOf(textField.getText()),textField_1.getText(),Double.valueOf(textField_2.getText()));
+					modelo.setRowCount(0);
+					Conexion.cargarTablaInven();
 					
 				} catch (NumberFormatException e2) {
 					// TODO Auto-generated catch block
@@ -455,6 +460,16 @@ public class Interface {
 		table_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table_2.setBounds(179, 125, 616, 518);
 		Clientes.add(table_2);
+		modeloClientes.addColumn("persona");
+		modeloClientes.addColumn("producto");
+		modeloClientes.addColumn("correo");
+		try {
+			Conexion.cargarTablaClientes();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
@@ -563,10 +578,14 @@ public class Interface {
 		lblNewLabel_1.setIcon(new ImageIcon(Interface.class.getResource("/Ventas/Isolated-Logo.png")));
 		lblNewLabel_1.setBounds(931, 0, 59, 64);
 		frame.getContentPane().add(lblNewLabel_1);
+		String[] nombre= {"Lucia","Paco","Jordan","Sergio","Jorge"};
+		int ls=nombre.length-1;
+		int li=0;
 		frame.setTitle("BeeKeepIt");
 		
 		
-		//tabbedPane.setUI(new CustomTabbedPaneUI());			//Ecplise no lo detecta bien
+		
+		tabbedPane.setUI(new CustomTabbedPaneUI());			//Ecplise no lo detecta bien
 	}
 	public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
 

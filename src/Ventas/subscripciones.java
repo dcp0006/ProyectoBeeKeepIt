@@ -180,7 +180,7 @@ public class subscripciones {
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			if(txtRepitelaAqui.getText().length() ==20 && passwordField.getText().length()==3) {
+			
 				progressBar.setVisible(true);
 				Timer timer=new Timer(5000,new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -194,10 +194,8 @@ public class subscripciones {
 				});
 				timer.start();
 				
-			}else {
-				JOptionPane.showInternalMessageDialog(null, "Tarjeta vacia");
 			}
-			}
+			
 				
 				
 				
