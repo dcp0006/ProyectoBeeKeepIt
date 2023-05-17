@@ -1,0 +1,131 @@
+/**
+ * Clase de conexión que proporciona métodos para interactuar con una base de datos.
+ */
+public class Conexion {
+
+    /**
+     * Añade un producto a la base de datos.
+     *
+     * @param cantidad Cantidad del producto a añadir.
+     * @param producto Nombre del producto a añadir.
+     * @param precio   Precio del producto a añadir.
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void añadirProducto(int cantidad, String producto, double precio) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Añade una venta a la base de datos.
+     *
+     * @param producto Nombre del producto vendido.
+     * @param cantidad Cantidad del producto vendido.
+     * @param precio   Precio del producto vendido.
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void añadirVenta(String producto, int cantidad, double precio) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Elimina todos los productos de la base de datos.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void eliminarTodosProducto() throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Carga la tabla de inventarios desde la base de datos.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void cargarTablaInven() throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Carga la tabla de ventas desde la base de datos.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void cargarTablaVentas() throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Actualiza un producto en la base de datos.
+     *
+     * @param cantidad Nueva cantidad del producto.
+     * @param producto Nombre del producto a actualizar.
+     * @param precio   Nuevo precio del producto.
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void actualizarProducto(int cantidad, String producto, double precio) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Actualiza la contraseña de un usuario en la base de datos.
+     *
+     * @param usuario  Nombre de usuario.
+     * @param password Nueva contraseña del usuario.
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void actualizarUsuario(String usuario, String password) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Elimina un producto de la base de datos.
+     *
+     * @param producto Nombre del producto a eliminar.
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void eliminarProducto(Object producto) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param usuario  Nombre de usuario.
+     * @param password Contraseña del usuario.
+      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void eliminarProducto(Object producto) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param usuario  Nombre de usuario.
+     * @param password Contraseña del usuario.
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public static void registroUsuario(String usuario, String password) throws SQLException {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Comprueba las credenciales de inicio de sesión de un usuario en la base de datos.
+     *
+     * @param usuario  Nombre de usuario.
+     * @param password Contraseña del usuario.
+     * @return true si las credenciales son válidas, false en caso contrario.
+     */
+    public static boolean loginUsuario(String usuario, String password) {
+        // Código omitido por brevedad
+    }
+
+    /**
+     * Método principal que se ejecuta al iniciar la aplicación.
+     *
+     * @param args Los argumentos de línea de comandos.
+     */
+    public static void main(String[] args) {
+        // Código omitido por brevedad
+    }
+}
